@@ -5,9 +5,12 @@ import com.crud.mongodb.appmongodb.request.DepartmentRequest;
 import com.crud.mongodb.appmongodb.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("departmentsV2")
@@ -34,6 +37,11 @@ public class DepartmentControllerV2 {
     public ResponseEntity delete(@PathVariable("id") String departmentId) {
         service.delete(departmentId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/sorted-by")
+    public ResponseEntity<List<Department>> getAllPageable(Pageable pageable) {
+        return new ResponseEntity<>(service.findAllPageable(pageable), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

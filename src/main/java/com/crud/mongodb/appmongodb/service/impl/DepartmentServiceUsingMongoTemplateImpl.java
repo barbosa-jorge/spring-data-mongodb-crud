@@ -6,10 +6,13 @@ import com.crud.mongodb.appmongodb.request.DepartmentRequest;
 import com.crud.mongodb.appmongodb.service.DepartmentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import java.util.List;
 
 @Service("mongoTemplateService")
 public class DepartmentServiceUsingMongoTemplateImpl implements DepartmentService {
@@ -55,6 +58,11 @@ public class DepartmentServiceUsingMongoTemplateImpl implements DepartmentServic
 
     public Department findByEmployeeNameAndAgeBetween(String employeeName, int minAge, int maxAge) {
         return mongoTemplateDao.findByEmployeeNameAndAgeBetween(employeeName, minAge, maxAge);
+    }
+
+    @Override
+    public List<Department> findAllPageable(Pageable pageable) {
+        return mongoTemplateDao.findAllPageable(pageable);
     }
 
     private Department mapToDepartmentDocument(DepartmentRequest departmentRequest) {

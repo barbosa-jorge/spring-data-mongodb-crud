@@ -1,6 +1,6 @@
 package com.crud.mongodb.appmongodb.services;
 
-import com.crud.mongodb.appmongodb.Department;
+import com.crud.mongodb.appmongodb.model.Department;
 import com.crud.mongodb.appmongodb.requests.DepartmentRequest;
 
 public interface DepartmentService {

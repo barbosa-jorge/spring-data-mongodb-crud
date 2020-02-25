@@ -1,6 +1,6 @@
 package com.crud.mongodb.appmongodb.requests;
 
-import com.crud.mongodb.appmongodb.Employee;
+import com.crud.mongodb.appmongodb.model.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -2,11 +2,14 @@ package com.crud.mongodb.appmongodb.dao;
 
 import com.crud.mongodb.appmongodb.model.Department;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class MongoTemplateDao {
@@ -45,7 +48,8 @@ public class MongoTemplateDao {
                 Query.query(Criteria
                         .where("employees.name")
                         .regex("^"+employeeName)
-                        .and("employees.age").gt(minAge).lt(maxAge)), Department.class);
+                        .andOperator()
+                        .where("employees.age").lte(maxAge).gte(minAge)), Department.class);
     }
 
     public Department findByDepartmentName(String departmentName) {
@@ -72,4 +76,16 @@ public class MongoTemplateDao {
     public Department findAndModify(Query query, Update update) {
         return mongoTemplate.findAndModify(query, update, Department.class);
     }
+
+    public List<Department> findAllPageable(Pageable pageable) {
+        Query query = new Query();
+        query.with(pageable);
+        return mongoTemplate.find(query, Department.class);
+    }
+
+//    public List<Department> findAllSortedBy(String field, Sort sort) {
+//        Query query = new Query();
+//        query.with(sort);
+//        return mongoTemplate.find(query, Department.class);
+//    }
 }

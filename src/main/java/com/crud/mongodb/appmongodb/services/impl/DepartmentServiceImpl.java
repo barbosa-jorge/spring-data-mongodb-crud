@@ -1,7 +1,7 @@
 package com.crud.mongodb.appmongodb.services.impl;
 
-import com.crud.mongodb.appmongodb.Department;
-import com.crud.mongodb.appmongodb.DepartmentRepository;
+import com.crud.mongodb.appmongodb.model.Department;
+import com.crud.mongodb.appmongodb.repository.DepartmentRepository;
 import com.crud.mongodb.appmongodb.requests.DepartmentRequest;
 import com.crud.mongodb.appmongodb.services.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;

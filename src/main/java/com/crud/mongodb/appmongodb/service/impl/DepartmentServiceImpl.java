@@ -6,8 +6,11 @@ import com.crud.mongodb.appmongodb.request.DepartmentRequest;
 import com.crud.mongodb.appmongodb.service.DepartmentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import java.util.List;
 
 @Service("departmentService")
 public class DepartmentServiceImpl implements DepartmentService {
@@ -51,6 +54,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Department findByEmployeeNameAndAgeBetween(String employeeName, int minAge, int maxAge) {
+        return null;
+    }
+
+    @Override
+    public List<Department> findAllPageable(Pageable pageable) {
         return null;
     }
 
